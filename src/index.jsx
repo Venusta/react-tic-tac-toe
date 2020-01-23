@@ -1,12 +1,13 @@
+/* eslint-disable */
 import React from "react";
 import ReactDOM from "react-dom";
+import TitleComponent from "./components/TitleComponent";
 
 function Root() {
-  return <h1>Hello, world.</h1>;
+  return (
+    <h1>Hello, world.</h1> ,
+    <TitleComponent />
+  );
 }
 
-// Render the Root element into the DOM
-ReactDOM.render(
-  <Root />,
-  document.getElementById("root"),
-);
+ReactDOM.render(<Root />, document.getElementById("root"));
