@@ -1,15 +1,5 @@
-/* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable no-use-before-define */
-/* eslint-disable prefer-destructuring */
-/* eslint-disable react/no-unused-state */
-/* eslint-disable no-alert */
-/* eslint-disable func-names */
 /* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/button-has-type */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable react/prefer-stateless-function */
 /* eslint-disable max-classes-per-file */
 
 import React from "react";
@@ -17,20 +7,21 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 
-function Square(props) {
+function Square({ onClick, value }) {
   return (
-    <button className="square" onClick={props.onClick}>
-      {props.value}
+    <button type="button" className="square" onClick={onClick}>
+      {value}
     </button>
   );
 }
 
 class Board extends React.Component {
   renderSquare(i) {
+    const { squares, onClick } = this.props;
     return (
       <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
+        value={squares[i]}
+        onClick={() => onClick(i)}
       />
     );
   }
@@ -71,19 +62,21 @@ class Game extends React.Component {
   }
 
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const { history: historyState, stepNumber, xIsNext } = this.state;
+
+    const history = historyState.slice(0, stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? "X" : "O";
+    squares[i] = xIsNext ? "X" : "O";
     this.setState({
       history: history.concat([{
         squares,
       }]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
+      xIsNext: !xIsNext,
     });
   }
 
@@ -95,8 +88,10 @@ class Game extends React.Component {
   }
 
   render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    const { history: historyState, stepNumber, xIsNext } = this.state;
+
+    const history = historyState;
+    const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
@@ -106,7 +101,7 @@ class Game extends React.Component {
       return (
         // eslint-disable-next-line react/no-array-index-key
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button type="button" onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       );
     });
@@ -115,7 +110,7 @@ class Game extends React.Component {
     if (winner) {
       status = `Winner: ${winner}`;
     } else {
-      status = `Next player: ${this.state.xIsNext ? "X" : "O"}`;
+      status = `Next player: ${xIsNext ? "X" : "O"}`;
     }
 
     return (
