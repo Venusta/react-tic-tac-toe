@@ -1,12 +1,14 @@
-/* eslint-disable */
 import React from "react";
 import ReactDOM from "react-dom";
-import TitleComponent from "./components/TitleComponent";
+import TestComponent from "./components/TestComponent";
 
 function Root() {
   return (
-    <h1>Hello, world.</h1> ,
-    <TitleComponent />
+    <div>
+      <h1>Hello, world.</h1>
+      <TestComponent />
+      <TestComponent />
+    </div>
   );
 }
 

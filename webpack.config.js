@@ -65,6 +65,11 @@ module.exports = {
     filename: "js/[name].[hash].js",
   },
 
+  resolve: {
+    extensions: [".js", ".jsx"],
+    mainFields: ["browser", "module", "main"],
+  },
+
   // Determine how the different types of modules will be treated.
   // https://webpack.js.org/configuration/module
   // https://webpack.js.org/concepts#loaders
