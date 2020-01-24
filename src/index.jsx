@@ -107,7 +107,7 @@ class Game extends Component {
 function Root() {
   return (
     <div>
-      <h1>Todos</h1>
+      <h1>Tic-Tac-Toe</h1>
       <Game />
     </div>
   );
