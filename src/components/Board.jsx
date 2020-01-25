@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Square from "./Square";
@@ -42,6 +41,7 @@ class Board extends Component {
 Board.propTypes = {
   squares: PropTypes.arrayOf(PropTypes.string).isRequired,
   onClick: PropTypes.func.isRequired,
+  boardSize: PropTypes.objectOf(PropTypes.number, PropTypes.number).isRequired,
 };
 
 export default Board;
