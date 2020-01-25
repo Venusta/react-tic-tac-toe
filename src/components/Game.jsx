@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import shortid from "shortid";
 import Board from "./Board";
 import calculateWinner from "../utils/calculateWinner";
+
 
 class Game extends Component {
   constructor(props) {
@@ -68,9 +70,9 @@ class Game extends Component {
       const desc = move
         ? `Go to move #${move} x: ${history[move].moveLoc.x} y: ${history[move].moveLoc.y}`
         : "Go to game start";
+      const id = shortid.generate();
       return (
-        // eslint-disable-next-line react/no-array-index-key
-        <li key={move}>
+        <li key={id}>
           <button type="button" onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       );
