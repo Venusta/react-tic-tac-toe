@@ -3,7 +3,6 @@ import shortid from "shortid";
 import Board from "./Board";
 import calculateWinner from "../utils/calculateWinner";
 
-
 class Game extends Component {
   constructor(props) {
     super(props);
