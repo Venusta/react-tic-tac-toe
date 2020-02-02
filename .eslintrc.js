@@ -20,6 +20,7 @@ module.exports = {
   },
   plugins: [
     "react",
+    "react-hooks",
   ],
   settings: {
     react: {
@@ -35,5 +36,7 @@ module.exports = {
       "error",
       "windows",
     ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
 };
