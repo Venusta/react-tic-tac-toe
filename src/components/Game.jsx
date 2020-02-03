@@ -7,7 +7,10 @@ const Game = () => {
   const boardSize = { x: 3, y: 3 };
   const boardArea = boardSize.x * boardSize.y;
 
-  const [history, setHistory] = useState([{ squares: Array(boardArea).fill(null) }]);
+  const [history, setHistory] = useState([{
+    squares: Array(boardArea).fill(null),
+    moveLoc: { x: null, y: null },
+  }]);
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
 
