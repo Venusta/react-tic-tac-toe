@@ -1,9 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Square from "./Square";
+import { SquareValue } from "../types";
 
-const Board = ({ squares, onClick, boardSize: { x, y } }) => {
-  const renderSquare = (i) => (
+interface BoardProps {
+  onClick(i: number): void;
+  squares: SquareValue[];
+  boardSize: {x: number; y: number };
+}
+
+const Board: React.FC<BoardProps> = ({ squares, onClick, boardSize: { x, y } }) => {
+  const renderSquare = (i: number) => (
     <Square
       key={`square${i}`}
       value={squares[i]}
@@ -33,9 +40,9 @@ const Board = ({ squares, onClick, boardSize: { x, y } }) => {
 };
 
 Board.propTypes = {
-  squares: PropTypes.arrayOf(PropTypes.string).isRequired,
+  squares: PropTypes.arrayOf(PropTypes.any).isRequired, // fix
   onClick: PropTypes.func.isRequired,
-  boardSize: PropTypes.objectOf(PropTypes.number, PropTypes.number).isRequired,
+  boardSize: PropTypes.exact({ x: PropTypes.number, y: PropTypes.number }).isRequired,
 };
 
 export default Board;

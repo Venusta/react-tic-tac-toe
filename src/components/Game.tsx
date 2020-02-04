@@ -3,7 +3,7 @@ import shortid from "shortid";
 import Board from "./Board";
 import calculateWinner from "../utils/calculateWinner";
 
-const Game = () => {
+const Game: React.FC = () => {
   const boardSize = { x: 3, y: 3 };
   const boardArea = boardSize.x * boardSize.y;
 
@@ -11,17 +11,18 @@ const Game = () => {
     squares: Array(boardArea).fill(null),
     moveLoc: { x: null, y: null },
   }]);
+
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
 
-  const columnRowFromIndex = (i) => {
+  const columnRowFromIndex = (i: number) => {
     const { x } = boardSize;
     const row = Math.floor(i / x) + 1;
     const column = (i % x) + 1;
     return { x: column, y: row };
   };
 
-  const handleClick = (i) => {
+  const handleClick = (i: number) => {
     const newHistory = history.slice(0, stepNumber + 1);
     const current = newHistory[newHistory.length - 1];
     const squares = current.squares.slice();
@@ -41,7 +42,7 @@ const Game = () => {
     setXIsNext(!xIsNext);
   };
 
-  const jumpTo = (step) => {
+  const jumpTo = (step: number) => {
     setStepNumber(step);
     setXIsNext((step % 2) === 0);
   };
@@ -74,7 +75,7 @@ const Game = () => {
         <Board
           boardSize={boardSize}
           squares={current.squares}
-          onClick={(i) => handleClick(i)}
+          onClick={(i: number) => handleClick(i)}
         />
       </div>
       <div className="game-info">

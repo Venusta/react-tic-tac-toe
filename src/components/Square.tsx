@@ -1,7 +1,14 @@
+/* eslint-disable react/forbid-prop-types */
 import React from "react";
 import PropTypes from "prop-types";
+import { SquareValue } from "../types";
 
-const Square = ({ onClick, value }) => (
+interface SquareProps {
+  onClick(): void;
+  value: SquareValue;
+}
+
+const Square: React.FC<SquareProps> = ({ onClick, value }) => (
   <button type="button" className="square" onClick={onClick}>
     {value}
   </button>
@@ -12,7 +19,7 @@ Square.defaultProps = {
 };
 
 Square.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.any, // fix
   onClick: PropTypes.func.isRequired,
 };
 
